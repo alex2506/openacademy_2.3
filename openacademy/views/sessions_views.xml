@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.actions.act_window" id="openacademy.action_sessions">
+        <field name="name">Action Sessions</field>
+        <field name="res_model">openacademy.session</field>
+        <field name="view_mode">tree,form,calendar,graph,kanban</field>
+    </record>
+
+    <record model="ir.ui.view" id="openacademy.view_form_sessions">
+        <field name="name">View Form Sessions</field>
+        <field name="model">openacademy.session</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="active"/>
+                        <field name="name"/>
+                        <field name="instructor"/>
+                        <field name="course_id"/>
+                     </group>
+                    <group>
+                        <field name="start_date"/>
+                        <field name="duration"/>
+                        <field name="number_of_seats"/>
+                        <field name="taken_seats" widget="progressbar"/>
+                    </group>
+                    <group>
+                        <field name="attendees_id"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="openacademy.view_tree_sessions">
+        <field name="name">View Tree Sessions</field>
+        <field name="model">openacademy.session</field>
+        <field name="arch" type="xml">
+            <tree string="Session Tree" decoration-info="duration&lt;5" decoration-danger="duration&gt;15">
+                <field name="active"/>
+                <field name="name"/>
+                <field name="start_date"/>
+                <field name="stop_date"/>
+                <field name="duration"/>
+                <field name="number_of_seats"/>
+                <field name="taken_seats" widget="progressbar"/>
+                <field name="instructor"/>
+                <field name="course_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="openacademy.view_search_sessions">
+        <field name="name">View Search Sessions</field>
+        <field name="model">openacademy.session</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="start_date"/>
+                <field name="duration"/>
+                <field name="number_of_seats"/>
+                <field name="instructor"/>
+                <field name="course_id"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="openacademy.view_calendar_sessions">
+        <field name="name">View Calendar Sessions</field>
+        <field name="model">openacademy.session</field>
+        <field name="arch" type="xml">
+            <calendar string="Session Calendar" date_start="start_date" date_stop="stop_date" color="instructor">
+                <field name="name"/>
+            </calendar>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="openacademy.view_graph_sessions">
+        <field name="name">View Graph Sessions</field>
+        <field name="model">openacademy.session</field>
+        <field name="arch" type="xml">
+            <graph string="Number of attendees">
+                <!-- "course_id" - связанное поле с курсом, т.е. по оси абсцисс будет имя курса -->
+                <field name="course_id"/>
+                <field name="number_of_attendees" type="measuire"/>
+            </graph>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="openacademy_view_kanban_sessions">
+        <field name="name">View Kanban Sessions</field>
+        <field name="model">openacademy.session</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="course_id" sample="1">
+                <field name="name"/>
+                <field name="course_id"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <ul>
+                                    <li>
+                                        Session:
+                                        <field name="name"/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>

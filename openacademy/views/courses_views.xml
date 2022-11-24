@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.actions.act_window" id="openacademy.action_courses">
+        <field name="name">Action Courses</field>
+        <field name="res_model">openacademy.course</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.ui.view" id="openacademy.view_form_courses">
+        <field name="name">View Form Courses</field>
+        <field name="model">openacademy.course</field>
+        <field name="arch" type="xml">
+            <form>
+               <group>
+                <field name="name"/>
+                <field name="responsible_user"/>
+               </group>
+               <notebook>
+                 <page string="Description">
+                    <group>
+                      <field name="description" />
+                    </group>
+                 </page>
+               </notebook>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="openacademy.view_tree_courses">
+        <field name="name">View_Tree_Courses (id=openacademy.view_tree_courses)</field>
+        <field name="model">openacademy.course</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="responsible_user"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="openacademy.view_search_courses">
+        <field name="name">View_Search_Courses (id=openacademy.view_search_courses)</field>
+        <field name="model">openacademy.course</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="description"/>
+                <filter name="my_courses" string="My Courses"
+                        domain="[('responsible_user','=' ,uid)]"/>
+                <group string="Group By">
+                    <filter name="by_responsible" string="Responsible"
+                            context="{'group_by': 'responsible_user'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+</odoo>

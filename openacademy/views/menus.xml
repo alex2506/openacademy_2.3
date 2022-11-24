@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem name="Open Academy" id="openacademy.menu_root"/>
+
+    <menuitem name="Courses"
+              id="openacademy.menu_courses"
+              parent="openacademy.menu_root"
+              action="openacademy.action_courses"/>
+
+    <menuitem name="Sessions"
+              id="openacademy.menu_sessions"
+              parent="openacademy.menu_root"
+              action="openacademy.action_sessions"/>
+
+    <menuitem name="Partners set Attributes"
+              id="openacademy.menu_partners"
+              parent="openacademy.menu_root"
+              action="openacademy.action_partners"/>
+
+    <menuitem name="Dashboard"
+              id="openacademy.menu_dashboard"
+              parent="openacademy.menu_root"
+              action="openacademy.action_dashboard"/>
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <record model="ir.actions.act_window" id="openacademy.action_partners">
+        <field name="name">Action Partners</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+  <record model="ir.ui.view" id="openacademy.view_form_partner">
+        <field name="name">View form partner</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='category_id']" position="after">
+                <separator string="Set Attributes"/>
+                        <field name="inh_is_instructor" string="Is instructor?"/>
+                        <field name="inh_teacher" string="Teacher / Level" style="color:Green;"/>
+                        <field name="session_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

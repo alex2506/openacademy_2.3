@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.actions.act_window" id="openacademy.action_calendar_sessions">
+        <field name="name">Sessions</field>
+        <field name="res_model">openacademy.session</field>
+        <field name="view_mode">calendar</field>
+        <field name="view_id" ref="openacademy.view_calendar_sessions"/>
+    </record>
+
+    <record model="ir.actions.act_window" id="openacademy.action_graph_sessions">
+        <field name="name">Sessions</field>
+        <field name="res_model">openacademy.session</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="openacademy.view_graph_sessions"/>
+    </record>
+
+    <record id="view_form_dashboard" model="ir.ui.view">
+        <field name="name">Dashboard Form</field>
+        <field name="model">board.board</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Open Academy Dashboard">
+                <board style="1-1">
+
+                    <column>
+                        <action
+                            string="Number of attendees"
+                            name="%(openacademy.action_graph_sessions)d"/>
+
+                        <action
+                            string="List of courses"
+                            name="%(openacademy.action_courses)d"/>
+                    </column>
+                    <column>
+                        <action
+                            string="Calendar"
+                            name="%(openacademy.action_calendar_sessions)d"/>
+                    </column>
+
+               </board>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="openacademy.action_dashboard">
+        <field name="name">OA Dashboard</field>
+        <field name="res_model">board.board</field>
+        <field name="view_mode">form</field>
+        <field name="usage">menu</field>
+        <field name="view_id" ref="view_form_dashboard"/>
+    </record>
+</odoo>
